@@ -5,7 +5,7 @@ import values from "@/data/values.json";
 
 export function ValuesSection() {
   return (
-    <Section tone="sky">
+    <Section tone="white">
       <Reveal>
         <SectionHeading
           eyebrow="What we hold to"
@@ -13,11 +13,11 @@ export function ValuesSection() {
         />
       </Reveal>
       <div className="mt-14 grid gap-10 sm:grid-cols-2">
-        {values.map((value, i) => (
-          <Reveal key={value.id} delay={i * 80}>
+        {values.map((value) => (
+          <Reveal key={value.id}>
             <article className="flex flex-col gap-3 border-t border-border-strong pt-6">
               <h3 className="font-display text-2xl text-navy">{value.title}</h3>
-              <p className="text-teal">{value.body}</p>
+              <p className="text-muted-foreground">{value.body}</p>
             </article>
           </Reveal>
         ))}

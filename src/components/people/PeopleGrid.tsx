@@ -8,7 +8,7 @@ type PeopleGridProps = {
   title: string;
   intro?: string | undefined;
   people: Person[];
-  tone?: "beige" | "white" | "sky";
+  tone?: "beige" | "white" | "navy";
   size?: "default" | "compact";
   onOpen: (person: Person) => void;
 };

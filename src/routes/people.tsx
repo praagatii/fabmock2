@@ -51,7 +51,7 @@ function PeoplePage() {
         title="The people you will actually work with."
         intro="Designers, engineers and service leads across Mumbai, Pune and Bengaluru. Select anyone to read more."
         people={people.team}
-        tone="sky"
+        tone="beige"
         size="compact"
         onOpen={setSelected}
       />

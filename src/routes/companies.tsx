@@ -48,7 +48,7 @@ function CompaniesPage() {
         <CompanySection
           key={company.id}
           company={company}
-          tone={i % 2 === 0 ? "white" : "sky"}
+          tone={i % 2 === 0 ? "white" : "beige"}
         />
       ))}
     </>

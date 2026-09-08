@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 type SectionProps = {
   children: React.ReactNode;
-  tone?: "beige" | "white" | "sky" | "navy";
+  tone?: "beige" | "white" | "navy";
   size?: "default" | "large" | "compact";
   id?: string;
   className?: string;
@@ -11,7 +11,6 @@ type SectionProps = {
 const toneClasses: Record<NonNullable<SectionProps["tone"]>, string> = {
   beige: "bg-background text-foreground",
   white: "bg-surface text-surface-foreground",
-  sky: "bg-sky text-foreground",
   navy: "bg-navy text-on-dark",
 };
 

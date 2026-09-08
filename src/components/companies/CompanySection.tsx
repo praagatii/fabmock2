@@ -21,7 +21,7 @@ export type CompanyDetail = {
 
 type CompanySectionProps = {
   company: CompanyDetail;
-  tone?: "beige" | "white" | "sky";
+  tone?: "beige" | "white" | "navy";
 };
 
 /** One long section per operating company. Each is a separate legal entity. */
