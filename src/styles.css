@@ -204,3 +204,285 @@
     display: none;
   }
 }
+
+/* =====================================================================
+   PRELOADER — FAB-LUX word reveal (LPAS reference)
+   Timeline (mirrors the LPAS preloader sequencing):
+   0.15s  F (gold) blurs in from below, power4.out
+   0.35s  L (gold) blurs in, staggered behind F
+   0.30s  the FAB-LUX word block slides in from the right
+   0.40s  "ab" / "ux" chase the leading letters back into place
+   1.75s  the two words split apart (left / right)…
+   1.75s  …while the same hero video scales up to fill the screen
+   2.90s  the preloader fades, handing off to the live hero video
+   ===================================================================== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--navy);
+  transition: opacity 120ms linear;
+}
+
+.preloader--fade {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* The video that will become the hero, expanding behind the words */
+.preloader__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(0);
+  animation: preloader-video-grow 1.5s var(--ease-calm) 1.6s both;
+}
+
+/* The FAB-LUX word block slides in from off-screen right */
+.preloader__words {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: clamp(1.25rem, 4vw, 4rem);
+  row-gap: 0.25rem;
+  padding-inline: 1.5rem;
+  animation: preloader-sections-in 1.3s cubic-bezier(0.7, 0, 0.3, 1) 0.3s both;
+}
+
+.preloader__section {
+  display: inline-block;
+}
+
+/* At the reveal beat both words travel apart to clear the video */
+.preloader__section--left {
+  animation: preloader-split-left 1s cubic-bezier(0.7, 0, 0.3, 1) 1.75s both;
+}
+
+.preloader__section--right {
+  animation: preloader-split-right 1s cubic-bezier(0.7, 0, 0.3, 1) 1.75s both;
+}
+
+/* While the words travel, they scale down and drop away */
+.preloader__word {
+  display: inline-block;
+  white-space: nowrap;
+  animation: preloader-words-out 1s cubic-bezier(0.7, 0, 0.3, 1) 1.75s both;
+}
+
+.preloader__wordFl {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--gold);
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  line-height: 0.95;
+  animation: preloader-fl-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.preloader__wordFl--two {
+  animation-delay: 0.35s;
+}
+
+.preloader__wordRl {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--on-dark-muted);
+  opacity: 0.85;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  line-height: 0.95;
+  animation: preloader-rl-in 1.3s cubic-bezier(0.7, 0, 0.3, 1) 0.4s both;
+}
+
+@keyframes preloader-fl-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes preloader-sections-in {
+  from {
+    transform: translateX(120%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes preloader-rl-in {
+  from {
+    transform: translateX(60%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes preloader-split-left {
+  to {
+    transform: translateX(calc(-50vw - 100%));
+  }
+}
+
+@keyframes preloader-split-right {
+  to {
+    transform: translateX(calc(50vw + 100%));
+  }
+}
+
+@keyframes preloader-video-grow {
+  from {
+    transform: scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes preloader-words-out {
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Reduced motion — skip the choreography; show the name, fade out */
+.preloader--reduced .preloader__video {
+  animation: none;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.preloader--reduced .preloader__section,
+.preloader--reduced .preloader__word,
+.preloader--reduced .preloader__wordFl,
+.preloader--reduced .preloader__wordRl,
+.preloader--reduced .preloader__words {
+  animation: none;
+}
+
+/* =====================================================================
+   HERO — cinematic video (DSGN Interior reference)
+   Entrance sequences fire on first paint; their delays line up with the
+   preloader hand-off (~2.3s) so content is settling as the loader lifts.
+   ===================================================================== */
+.hero-media {
+  animation: hero-media-in 2s var(--ease-calm) 2.2s both;
+}
+
+/* Opacity is driven inside the keyframes (not the base rule) so content stays
+   visible if animations are disabled by reduced-motion settings. */
+.hero-rise {
+  animation:
+    hero-rise-in 1s cubic-bezier(0.16, 1, 0.3, 1) both,
+    hero-blur-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-rise--1 {
+  animation-delay: 2.35s, 2.35s;
+}
+
+.hero-rise--2 {
+  animation-delay: 2.5s, 2.5s;
+}
+
+.hero-rise--3 {
+  animation-delay: 2.65s, 2.65s;
+}
+
+@keyframes hero-media-in {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-rise-in {
+  from {
+    transform: translateY(24px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes hero-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media,
+  .hero-rise {
+    animation: none;
+  }
+
+  .scroll-hint__dot {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* Scroll hint at the bottom of the hero */
+.scroll-hint__line {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 56px;
+  background: color-mix(in srgb, var(--on-dark-muted) 35%, transparent);
+}
+
+.scroll-hint__dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 10px;
+  transform: translateX(-50%);
+  background: var(--gold);
+  animation: scroll-hint-drop 2s var(--ease-calm) infinite;
+}
+
+@keyframes scroll-hint-drop {
+  0% {
+    transform: translate(-50%, -20%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 48px);
+    opacity: 0;
+  }
+}
