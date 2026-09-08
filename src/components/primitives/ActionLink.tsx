@@ -17,8 +17,8 @@ const base =
 
 const variants: Record<Variant, Record<Tone, string>> = {
   solid: {
-    dark: "bg-navy text-on-dark hover:bg-teal",
-    light: "bg-surface text-navy hover:bg-sky",
+    dark: "bg-navy text-on-dark hover:bg-beige hover:text-navy",
+    light: "bg-navy text-on-dark hover:bg-beige hover:text-navy",
   },
   outline: {
     dark: "border border-border-strong text-navy hover:border-navy hover:bg-navy hover:text-on-dark",

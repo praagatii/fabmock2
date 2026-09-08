@@ -17,8 +17,8 @@ const toneClasses: Record<NonNullable<SectionProps["tone"]>, string> = {
 
 const sizeClasses: Record<NonNullable<SectionProps["size"]>, string> = {
   compact: "py-14",
-  default: "py-section",
-  large: "py-section-lg",
+  default: "py-14 sm:py-[var(--spacing-section)]",
+  large: "py-14 sm:py-[var(--spacing-section-lg)]",
 };
 
 export function Section({
