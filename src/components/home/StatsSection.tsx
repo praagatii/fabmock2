@@ -15,8 +15,8 @@ export function StatsSection() {
         />
       </Reveal>
       <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {group.stats.map((stat, i) => (
-          <Reveal key={stat.label} delay={i * 80}>
+        {group.stats.map((stat) => (
+          <Reveal key={stat.label}>
             <StatFigure figure={stat.figure} label={stat.label} note={stat.note} />
           </Reveal>
         ))}

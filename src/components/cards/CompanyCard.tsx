@@ -25,7 +25,7 @@ export function CompanyCard({ company }: { company: Company }) {
       </div>
       <div className="flex flex-1 flex-col gap-4 p-8">
         <p className="text-eyebrow font-semibold uppercase text-teal">{company.sector}</p>
-        <h3 className="font-display text-3xl text-navy">{company.name}</h3>
+        <h3 className="font-display text-heading text-navy">{company.name}</h3>
         <p className="text-muted-foreground">{company.oneLiner}</p>
         <div className="mt-auto pt-4">
           <ActionLink href={company.url} variant="gold" external>

@@ -2,7 +2,7 @@ import { Section } from "@/components/primitives/Section";
 import { SectionHeading } from "@/components/primitives/SectionHeading";
 import { Reveal } from "@/components/primitives/Reveal";
 import { ActionLink } from "@/components/primitives/ActionLink";
-import { ProjectCard, type Project } from "@/components/cards/ProjectCard";
+import { ProjectCard } from "@/components/cards/ProjectCard";
 import projects from "@/data/projects.json";
 
 export function ProjectsSection() {
@@ -20,8 +20,8 @@ export function ProjectsSection() {
         </div>
       </Reveal>
       <div className="mt-14 grid gap-8 md:grid-cols-3">
-        {(projects as Project[]).slice(0, 3).map((project, i) => (
-          <Reveal key={project.id} delay={i * 100}>
+        {projects.slice(0, 3).map((project) => (
+          <Reveal key={project.id}>
             <ProjectCard project={project} />
           </Reveal>
         ))}

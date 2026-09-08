@@ -38,7 +38,7 @@ export function SectionHeading({
         {title}
       </Tag>
       {intro ? (
-        <p className={cn("text-balance", tone === "dark" ? "text-teal" : "text-on-dark-muted")}>
+        <p className={cn("text-balance", tone === "dark" ? "text-muted-foreground" : "text-on-dark-muted")}>
           {intro}
         </p>
       ) : null}

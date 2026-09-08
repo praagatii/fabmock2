@@ -12,7 +12,7 @@ export function CsrSection() {
   return (
     <Section tone="white">
       <Reveal>
-        <article className="group grid overflow-hidden bg-sky lg:grid-cols-2">
+        <article className="group grid overflow-hidden bg-beige lg:grid-cols-2">
           <div className="overflow-hidden">
             <img
               src={image}
