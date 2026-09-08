@@ -142,9 +142,12 @@
       scroll-behavior: auto;
     }
 
-    *,
-    *::before,
-    *::after {
+    /* The FAB-LUX entry sequence (preloader + hero) always plays on a fresh
+       page load — it is the branded opening experience. Everything else on
+       the site still honours the reduced-motion preference. */
+    *:not(.preloader):not(.preloader *):not(.hero-media):not(.hero-rise):not(.scroll-hint__dot),
+    *:not(.preloader):not(.preloader *):not(.hero-media):not(.hero-rise):not(.scroll-hint__dot)::before,
+    *:not(.preloader):not(.preloader *):not(.hero-media):not(.hero-rise):not(.scroll-hint__dot)::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -219,17 +222,29 @@
 .preloader {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 9999;
   display: grid;
   place-items: center;
   overflow: hidden;
   background: var(--navy);
-  transition: opacity 120ms linear;
+  animation: preloader-exit 3.4s linear forwards;
 }
 
-.preloader--fade {
-  opacity: 0;
-  visibility: hidden;
+/* CSS-driven exit: the loader fades on paint, independent of hydration, and
+   becomes inert (visibility + pointer-events) so the hero is fully usable
+   even before React finishes removing the node. */
+@keyframes preloader-exit {
+  0%,
+  86% {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 /* The video that will become the hero, expanding behind the words */
@@ -368,21 +383,6 @@
   }
 }
 
-/* Reduced motion — skip the choreography; show the name, fade out */
-.preloader--reduced .preloader__video {
-  animation: none;
-  transform: scale(1);
-  opacity: 1;
-}
-
-.preloader--reduced .preloader__section,
-.preloader--reduced .preloader__word,
-.preloader--reduced .preloader__wordFl,
-.preloader--reduced .preloader__wordRl,
-.preloader--reduced .preloader__words {
-  animation: none;
-}
-
 /* =====================================================================
    HERO — cinematic video (DSGN Interior reference)
    Entrance sequences fire on first paint; their delays line up with the
@@ -438,18 +438,6 @@
   to {
     opacity: 1;
     filter: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-media,
-  .hero-rise {
-    animation: none;
-  }
-
-  .scroll-hint__dot {
-    animation: none;
-    opacity: 0.6;
   }
 }
 
