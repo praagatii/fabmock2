@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Preloader } from "@/components/layout/Preloader";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { AdminProvider } from "@/lib/admin/session";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -129,6 +130,7 @@ function RootComponent() {
           <Outlet />
         ) : (
           <>
+            <SmoothScroll />
             <Preloader />
             <SiteHeader />
             <main id="main">

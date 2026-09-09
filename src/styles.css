@@ -17,6 +17,8 @@
   --color-sky: var(--sky);
   --color-beige: var(--beige);
   --color-gold: var(--gold);
+  --color-cocoa: var(--cocoa);
+  --color-bone: var(--bone);
 
   /* Semantic surfaces */
   --color-background: var(--background);
@@ -53,6 +55,10 @@
   --text-display-lg: clamp(3rem, 2rem + 5vw, 5.75rem);
   --text-display-lg--line-height: 1.02;
 
+  /* DSGN-referenced hero headline: huge, centred, lowercase */
+  --text-hero-xl: clamp(3.75rem, 2.6136rem + 5.6818vw, 8.75rem);
+  --text-hero-xl--line-height: 1.04;
+
   /* Radii — shared scale with the Fabluxe design system */
   --radius-xs: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 2px);
@@ -81,6 +87,8 @@
   --beige: #f8f7f2;
   --gold: #c8a45c;
   --white: #ffffff;
+  --cocoa: #594037;
+  --bone: #f6f5f4;
 
   --radius: 0.25rem;
 
@@ -153,6 +161,24 @@
       transition-duration: 0.01ms !important;
     }
   }
+}
+
+/* Lenis smooth scroll — drop-in classes (native behaviour if JS is off) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 /* Page shell — responsive padding matches the storefront container (px-5 sm:px-8) */
@@ -389,6 +415,8 @@
    preloader hand-off (~2.3s) so content is settling as the loader lifts.
    ===================================================================== */
 .hero-media {
+  filter: grayscale(1);
+  mix-blend-mode: screen;
   animation: hero-media-in 2s var(--ease-calm) 2.2s both;
 }
 
@@ -439,6 +467,41 @@
     opacity: 1;
     filter: none;
   }
+}
+
+/* DSGN-style hero stage — mirrors dsgninterior.se/en:
+   - full-viewport cocoa banner with a grayscale, screen-blended film
+   - a giant centred lowercase headline over a 15% cocoa scrim
+   - a bottom strip of contacts / address / scroll hint */
+.hero-title {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--bone);
+  background: color-mix(in srgb, var(--cocoa) 15%, transparent);
+  will-change: transform;
+}
+
+.hero-title__inner {
+  max-width: calc(100vw - 3rem);
+  margin: 0 auto;
+}
+
+.hero-strip {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 1.5rem;
+  color: var(--bone);
+  border-top: 1px solid color-mix(in srgb, var(--bone) 20%, transparent);
+}
+
+.hero-strip .scroll-hint__line {
+  height: 2.5rem;
 }
 
 /* Scroll hint at the bottom of the hero */

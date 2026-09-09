@@ -5,7 +5,6 @@ import { StatementSection } from "@/components/home/StatementSection";
 import { EditorialLead } from "@/components/home/EditorialLead";
 import { ProjectsSection } from "@/components/home/ProjectsSection";
 import { AwardsSection } from "@/components/home/AwardsSection";
-import { EditorialGallery } from "@/components/home/EditorialGallery";
 import { CompaniesSection } from "@/components/home/CompaniesSection";
 import { SustainabilitySection } from "@/components/home/SustainabilitySection";
 import { CsrSection } from "@/components/home/CsrSection";
@@ -37,7 +36,6 @@ function HomePage() {
       <EditorialLead />
       <ProjectsSection />
       <AwardsSection />
-      <EditorialGallery />
       <CompaniesSection />
       <SustainabilitySection />
       <CsrSection />

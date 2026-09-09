@@ -39,6 +39,11 @@ export function EditorialImage({
     const node = ref.current;
     if (!node) return;
 
+    // Eager images can be fully decoded by the time React hydrates, so the
+    // onLoad event never fires — treat a cached image as already loaded.
+    const img = node.querySelector("img");
+    if (img && img.complete && img.naturalWidth > 0) setLoaded(true);
+
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced || typeof IntersectionObserver === "undefined") {
       setVisible(true);
@@ -66,7 +71,13 @@ export function EditorialImage({
   return (
     <div
       ref={ref}
-      className={cn("editorial-img", aspect, zoom && "editorial-img--zoom", className)}
+      className={cn(
+        "editorial-img",
+        aspect,
+        shown && "editorial-img--in",
+        zoom && "editorial-img--zoom",
+        className,
+      )}
       style={position !== "center" ? { objectPosition: position } : undefined}
     >
       <img
@@ -75,7 +86,7 @@ export function EditorialImage({
         loading={eager ? "eager" : "lazy"}
         decoding="async"
         onLoad={() => setLoaded(true)}
-        className={cn("editorial-img__fit", shown && "editorial-img--in", imgClassName)}
+        className={cn("editorial-img__fit", imgClassName)}
         style={{ objectPosition: position }}
       />
     </div>
