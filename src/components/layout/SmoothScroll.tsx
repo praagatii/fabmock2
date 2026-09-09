@@ -28,10 +28,6 @@ export function SmoothScroll() {
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    // Hold scrolling while the FAB-LUX loader runs, then hand over to Lenis.
-    lenis.stop();
-    const unlock = window.setTimeout(() => lenis.start(), 3500);
-
     const tweens: gsap.core.Tween[] = [];
     Array.from(document.querySelectorAll<HTMLElement>(".editorial-img")).forEach((box) => {
       const img = box.querySelector<HTMLElement>(".editorial-img__fit");
@@ -106,7 +102,6 @@ export function SmoothScroll() {
     ScrollTrigger.refresh();
 
     return () => {
-      window.clearTimeout(unlock);
       tweens.forEach((t) => t.kill());
       ScrollTrigger.killAll();
       if (banners) {
