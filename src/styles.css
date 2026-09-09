@@ -50,8 +50,8 @@
   --text-display-sm--line-height: 1.15;
   --text-display-md: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
   --text-display-md--line-height: 1.1;
-  --text-display-lg: clamp(2.75rem, 1.6rem + 4.6vw, 5rem);
-  --text-display-lg--line-height: 1.05;
+  --text-display-lg: clamp(3rem, 2rem + 5vw, 5.75rem);
+  --text-display-lg--line-height: 1.02;
 
   /* Radii — shared scale with the Fabluxe design system */
   --radius-xs: calc(var(--radius) - 2px);
@@ -62,9 +62,9 @@
   --radius-2xl: calc(var(--radius) + 12px);
 
   /* Section rhythm */
-  --spacing-section: 4.5rem;
-  --spacing-section-lg: 5.5rem;
-  --spacing-gutter: 1.25rem;
+  --spacing-section: 5.5rem;
+  --spacing-section-lg: 7rem;
+  --spacing-gutter: 1.5rem;
   --spacing-shell: 80rem;
 
   /* Motion */
@@ -89,7 +89,7 @@
   --surface: var(--white);
   --surface-foreground: var(--navy);
   --muted: var(--sky);
-  --muted-foreground: var(--teal);
+  --muted-foreground: color-mix(in srgb, var(--navy) 58%, transparent);
   --primary: var(--navy);
   --primary-foreground: var(--white);
   --secondary: var(--teal);

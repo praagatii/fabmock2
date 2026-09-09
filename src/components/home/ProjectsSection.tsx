@@ -121,22 +121,20 @@ export function ProjectsSection() {
 
         <Reveal delay={60}>
           <Link to="/projects/$projectId" params={{ projectId: p3.id }} className="group block">
-            <div className="relative">
-              <EditorialImage
-                src={getImage(p3.image)}
-                alt={`${p3.title}, ${p3.location}`}
-                aspect="aspect-[16/10] lg:aspect-[24/10]"
-                position="center 55%"
-                zoom
-                className="w-full"
-              />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-3 bg-linear-to-t from-navy/80 via-navy/20 to-transparent p-8 pt-24 lg:p-12 lg:pt-32">
-                <p className="text-eyebrow font-semibold uppercase text-on-dark">
-                  Project 03 &mdash; {p3.location}
-                </p>
-                <h3 className="font-display text-display-md text-on-dark">{p3.title}</h3>
-                <ProjectMeta project={p3} light />
-              </div>
+            <EditorialImage
+              src={getImage(p3.image)}
+              alt={`${p3.title}, ${p3.location}`}
+              aspect="aspect-[16/10] lg:aspect-[24/10]"
+              position="center 55%"
+              zoom
+              className="w-full"
+            />
+            <div className="mt-5 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+              <p className="text-eyebrow font-semibold uppercase text-teal">
+                Project 03 &mdash; {p3.location}
+              </p>
+              <h3 className="font-display text-display-md text-foreground">{p3.title}</h3>
+              <ProjectMeta project={p3} />
             </div>
           </Link>
         </Reveal>

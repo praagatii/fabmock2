@@ -6,21 +6,21 @@ import companies from "@/data/companies.json";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-navy text-on-dark">
+    <footer className="border-t border-border bg-background">
       <div className="shell grid gap-12 py-section lg:grid-cols-4">
         <div className="flex flex-col gap-6">
           <BrandMark />
-          <p className="max-w-xs text-sm text-on-dark-muted">{group.description}</p>
+          <p className="max-w-xs text-sm text-muted-foreground">{group.description}</p>
         </div>
 
         <nav aria-label="Footer" className="flex flex-col gap-5">
-          <EyebrowLabel tone="light">Navigate</EyebrowLabel>
+          <EyebrowLabel>Navigate</EyebrowLabel>
           <ul className="flex flex-col gap-3 text-sm">
             {group.nav.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="text-on-dark-muted transition-colors duration-300 hover:text-gold"
+                  className="text-muted-foreground transition-colors duration-300 hover:text-gold"
                 >
                   {item.label}
                 </a>
@@ -30,16 +30,15 @@ export function SiteFooter() {
         </nav>
 
         <div className="flex flex-col gap-5">
-          <EyebrowLabel tone="light">Our Companies</EyebrowLabel>
+          <EyebrowLabel>Our Companies</EyebrowLabel>
           <ul className="flex flex-col gap-8">
             {companies.map((company) => (
               <li key={company.id} className="flex flex-col gap-3">
-                <p className="font-display text-lg text-on-dark">{company.name}</p>
-                <p className="text-sm text-on-dark-muted">{company.footerLine}</p>
+                <p className="font-display text-lg text-foreground">{company.name}</p>
+                <p className="text-sm text-muted-foreground">{company.footerLine}</p>
                 <ActionLink
                   href={company.url}
                   variant="gold"
-                  tone="light"
                   external
                   className="self-start"
                 >
@@ -51,8 +50,8 @@ export function SiteFooter() {
         </div>
 
         <div className="flex flex-col gap-5">
-          <EyebrowLabel tone="light">Contact</EyebrowLabel>
-          <address className="flex flex-col gap-3 text-sm not-italic text-on-dark-muted">
+          <EyebrowLabel>Contact</EyebrowLabel>
+          <address className="flex flex-col gap-3 text-sm not-italic text-muted-foreground">
             <span>
               {group.contact.addressLines.map((line) => (
                 <span key={line} className="block">
@@ -71,8 +70,8 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-on-dark-muted/20">
-        <div className="shell flex flex-col gap-4 py-6 text-sm text-on-dark-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-border">
+        <div className="shell flex flex-col gap-4 py-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Fabluxe Group. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-6">
             <a href="/privacy" className="hover:text-gold">

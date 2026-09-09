@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import { ActionLink } from "@/components/primitives/ActionLink";
-import { EyebrowLabel } from "@/components/primitives/EyebrowLabel";
-import group from "@/data/group.json";
 import { cn } from "@/lib/utils";
 
 export function HeroSection() {
@@ -28,35 +25,20 @@ export function HeroSection() {
       />
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-navy/50 to-transparent"
+        className="absolute inset-x-0 top-0 -z-10 h-32 bg-linear-to-b from-navy/40 to-transparent"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 -z-10 h-64 bg-linear-to-t from-navy/70 via-navy/20 to-transparent"
+        className="absolute inset-x-0 bottom-0 -z-10 h-56 bg-linear-to-t from-navy/70 via-navy/25 to-transparent"
       />
 
-      <div className="shell mt-auto pb-20 pt-32 sm:pb-24 sm:pt-36">
-        <div className="max-w-2xl">
-          <div className="hero-rise hero-rise--1">
-            <EyebrowLabel tone="light">
-              Since {group.founded} &mdash; Interiors &amp; Home Technology
-            </EyebrowLabel>
-          </div>
-          <h1 className="hero-rise hero-rise--2 mt-6 font-display text-display-md leading-tight text-on-dark">
-            Two companies that finish what they start.
+      <div className="shell pb-24 pt-36 sm:pb-28 sm:pt-44">
+        <div className="hero-rise hero-rise--1 max-w-3xl">
+          <h1 className="font-display text-display-lg leading-[1.02] text-on-dark">
+            Two companies that
+            <br className="hidden sm:block" />
+            finish what they start.
           </h1>
-          <p className="hero-rise hero-rise--3 mt-5 max-w-lg text-body leading-relaxed text-on-dark-muted">
-            Fabluxe designs and fits out interiors, and supplies the technology that lives inside
-            them. One group, one accountable standard of finish.
-          </p>
-          <div className="hero-rise hero-rise--3 mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
-            <ActionLink href="/companies" variant="quiet" tone="light">
-              Explore our companies
-            </ActionLink>
-            <ActionLink href="/contact" variant="quiet" tone="light">
-              Talk to us
-            </ActionLink>
-          </div>
         </div>
       </div>
 
