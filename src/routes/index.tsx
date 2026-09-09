@@ -3,7 +3,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { HeroSection } from "@/components/home/HeroSection";
 import { StatementSection } from "@/components/home/StatementSection";
 import { EditorialLead } from "@/components/home/EditorialLead";
-import { ProjectsSection } from "@/components/home/ProjectsSection";
 import { AwardsSection } from "@/components/home/AwardsSection";
 import { CompaniesSection } from "@/components/home/CompaniesSection";
 import { SustainabilitySection } from "@/components/home/SustainabilitySection";
@@ -34,7 +33,6 @@ function HomePage() {
       <HeroSection />
       <StatementSection />
       <EditorialLead />
-      <ProjectsSection />
       <AwardsSection />
       <CompaniesSection />
       <SustainabilitySection />

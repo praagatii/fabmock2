@@ -500,8 +500,86 @@ html.lenis body {
   border-top: 1px solid color-mix(in srgb, var(--bone) 20%, transparent);
 }
 
+/* While the banner sequence scrubs, the strip is fixed to the viewport floor
+   (a pure CSS change; no DOM moves that could upset hydration or React). */
+.banners--pin .hero-strip {
+  position: fixed;
+}
+
 .hero-strip .scroll-hint__line {
   height: 2.5rem;
+}
+
+/* DSGN-referenced banner sequence: a stack of full-viewport slides (intro
+   film + one project picture per slide). With JS active SmoothScroll sticks
+   the stack to the viewport and scrubs it one slide per scroll pad; without
+   JS (or reduced motion) the slides simply stack and scroll naturally. */
+.banners {
+  position: relative;
+  background: var(--cocoa);
+}
+
+.banners__stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  position: relative;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--cocoa);
+}
+
+.banner__media {
+  position: absolute;
+  inset: 0;
+}
+
+.banner__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.banner__caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 1.5rem 1.5rem 7rem;
+}
+
+.banners__pages {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transform: translateY(-50%);
+}
+
+.banner__pip {
+  width: 2px;
+  height: 10px;
+  background: color-mix(in srgb, var(--bone) 40%, transparent);
+  transition: height 0.5s var(--ease-calm), background-color 0.5s var(--ease-calm);
+}
+
+.banner__pip.is-active {
+  height: 28px;
+  background: var(--bone);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banners__pages {
+    display: none;
+  }
 }
 
 /* Scroll hint at the bottom of the hero */
